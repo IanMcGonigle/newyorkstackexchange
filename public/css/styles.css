@@ -1,0 +1,54 @@
+body {
+  background: #fff;
+}
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+}
+
+.cartoon {
+  display: block;
+  margin: 0 auto;
+  padding: 20px 0;
+  max-width: 400px;
+  text-align: center;
+  background: #fff;
+}
+
+.cartoon__image img {
+  max-width: 100%;
+}
+
+.cartoon__caption {
+  font-size: 16px;
+  padding-top: 10px;
+  font-style: italic;
+  color: #000;
+  font-family: "adobe-caslon-pro", Times, Georgia, serif;
+}
+
+.logo {
+  margin: auto 10px;
+  max-width: 220px;
+}
+
+.controls {
+  text-align: center;
+}
+
+.btn {
+  display: inline-block;
+  margin: 10px;
+}
+
+.stackExchange g {
+  transform: scale(2);
+}
+
+.math {
+  font-size: 45px;
+  display: inline-flex;
+  margin: auto 10px;
+}
