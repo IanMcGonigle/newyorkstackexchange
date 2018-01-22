@@ -3,6 +3,8 @@ const express = require("express");
 const request = require("request");
 const cheerio = require("cheerio");
 
+const env = Object.assign({}, process.env, { PORT: 5000 });
+
 const app = express();
 app.set("view engine", "pug");
 
@@ -17,8 +19,6 @@ const getStackExchange = function(req, res, next) {
     const $ = cheerio.load(body);
     const links = $(".question-hyperlink");
     const questions = [];
-    //text: `"${linkObj.children[0].data}"`.replace(/[\[\]']+/g, "")
-    //text: `"${linkObj.children[0].data}"`.replace(/\[[^\]]*\]/g, "")
     const qs = links.each(function(item, index) {
       const linkObj = links[item];
       const result = {
@@ -62,6 +62,6 @@ app.get("/", function(req, res) {
   });
 });
 
-app.listen(3000, function() {
+app.listen(env.PORT, function() {
   console.log("listening");
 });
