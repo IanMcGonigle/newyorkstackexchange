@@ -11,13 +11,13 @@ app.set("view engine", "pug");
 app.use(express.static(path.join(__dirname, "public")));
 
 const getStackExchange = function(req, res, next) {
-  const path = `https://interpersonal.stackexchange.com/questions?page=${Math.round(
+  const path = `https://interpersonal.stackexchange.com/questions?pagesize=15&page=${Math.round(
     Math.random() * 25
   )}`;
 
   request(path, function(error, response, body) {
     const $ = cheerio.load(body);
-    const links = $(".question-hyperlink");
+    const links = $(".question-summary .question-hyperlink");
     const questions = [];
     const qs = links.each(function(item, index) {
       const linkObj = links[item];
