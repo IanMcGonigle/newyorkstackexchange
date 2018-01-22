@@ -21,11 +21,18 @@ const getStackExchange = function(req, res, next) {
     const questions = [];
     const qs = links.each(function(item, index) {
       const linkObj = links[item];
+      const qUrl = `https://interpersonal.stackexchange.com${
+        linkObj.attribs.href
+      }`;
+      const qText = `"${linkObj.children[0].data}"`.replace(/\[[^\]]*\]/g, "");
       const result = {
-        url: `https://interpersonal.stackexchange.com${linkObj.attribs.href}`,
-        text: `"${linkObj.children[0].data}"`.replace(/\[[^\]]*\]/g, "")
+        url: qUrl,
+        text: qText
       };
-      questions.push(result);
+
+      if (qText !== "") {
+        questions.push(result);
+      }
     });
 
     res.questions = questions || [];
@@ -46,12 +53,13 @@ const getNewYorker = function(req, res, next) {
   });
 };
 
+const getRandomQuestion = function(questions) {};
+
 app.use(getStackExchange);
 app.use(getNewYorker);
 
 app.get("/", function(req, res) {
   const index = Math.round((res.questions.length - 1) * Math.random());
-
   const selectedQuestion = res.questions.splice(index, 1);
 
   res.render("index", {
