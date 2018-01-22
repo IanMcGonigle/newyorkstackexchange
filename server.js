@@ -3,7 +3,7 @@ const express = require("express");
 const request = require("request");
 const cheerio = require("cheerio");
 
-const env = Object.assign({}, process.env, { PORT: 5000 });
+const port = process.env.PORT || 5000;
 
 const app = express();
 app.set("view engine", "pug");
@@ -62,6 +62,6 @@ app.get("/", function(req, res) {
   });
 });
 
-app.listen(env.PORT, function() {
+app.listen(port, function() {
   console.log("listening");
 });
